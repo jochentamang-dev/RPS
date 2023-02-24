@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/ef32b2d000.js" crossorigin="anonymous"></script>
+    <title>RPS (by Jochen Tamang)</title>
+    <script src="script.js" defer></script>
+
 </head>
 <body>
+    <div class = "main">
+        <div class="score">
+            <h2 style="text-align: center;">SCORE</h2>
+            <h4>PLAYER SCORE</h4>
+            <p id = "player_score"></p>
+            <h4>COMPUTER SCORE</h4>
+            <p id = "computer_score"></p>
+            <div id = 'author'>
+                <p>Developed by:<br>Jochen Tamang</p>
+            </div>
+        </div>
+        <div class="container">
+            <button id = 'reset'>RESET</button>
+
+            <div class = "buttons">
+                <button><i id = "rock" class="fa-8x fa-regular fa-hand-back-fist"></i></button>
+                <button ><i id = "paper" class="fa-8x fa-regular fa-hand"></i></button>
+                <button><i  id = "scissor" class="fa-8x fa-regular fa-hand-scissors"></i></button>
+            </div>
+            <div>
+                <p style="text-align: center;">First to win 5 round wins the Game!</p>
+            </div>
+        </div>
+        <div id="result" style="display: flex; justify-content: center; align-items: center;">
+            <h4 id = "output"></h4>
+        </div>
+    </div>
     
 </body>
 </html>

@@ -10,7 +10,7 @@ function getComputerChoice()
         case 1:
             return 'Paper';
         case 2:
-            return 'Scissors';
+            return 'Scissor';
     }
 }
 function playRound(playerSelection, computerSelection)
@@ -18,7 +18,6 @@ function playRound(playerSelection, computerSelection)
     // 0- TIE 
     // 1- PLAYER
     // -1- COMPUTER
-    playerSelection = playerSelection.toUpperCase();
     computerSelection = computerSelection.toUpperCase();
     //Tie 
     if (playerSelection == computerSelection)
@@ -26,7 +25,7 @@ function playRound(playerSelection, computerSelection)
         return 0
     }
     //Computer wins
-    else if ((playerSelection == 'ROCK' && computerSelection == 'PAPER') || (playerSelection == 'PAPER' && computerSelection == 'SCISSORS') || (playerSelection == 'SCISSORS' && computerSelection == 'ROCK'))
+    else if ((playerSelection == 'ROCK' && computerSelection == 'PAPER') || (playerSelection == 'PAPER' && computerSelection == 'SCISSOR') || (playerSelection == 'SCISSOR' && computerSelection == 'ROCK'))
         return -1;
     //Player wins
     else return 1
@@ -35,42 +34,81 @@ function playRound(playerSelection, computerSelection)
 
 }
 
-function game()
+function game(e)
 {
-    let playerWin = 0
-    let computerWin = 0;
-    for (let i = 0; i < 5; i++) {
-        let playerSlection = prompt("Enter Rock, Paper, or Scissors").toUpperCase();
-        let computerSelection = getComputerChoice().toUpperCase();
-        let result = playRound(playerSlection, computerSelection)
-        if (result == 0)
-        {
-            console.log("IT'S A TIE")    
-        }
-        else if (result == 1)
-        {
-            console.log(`YOU WIN! ${playerSlection} BEATS ${computerSelection}`)
-            playerWin++
-        }
-        else {
-            console.log(`YOU LOSE! ${computerSelection} BEATS ${playerSlection}`)
-            computerWin++
-        }
-    }
-    console.log(`PLAYER WON ${playerWin} ROUND
-    COMPUTER WON ${computerWin} ROUND`)
 
-    if (playerWin == computerWin)
+    let playerSelection = e.target.id.toUpperCase();
+    console.log(playerSelection);
+    let computerSelection = getComputerChoice().toUpperCase();
+    let result = playRound(playerSelection, computerSelection)
+    if (result == 0)
     {
-        console.log("ITS A TIEEEEE!!")
+        displayResult.textContent = 'It\'s a tie'
     }
-    else if (playerWin > computerWin)
+    else if (result == 1)
     {
-        console.log("Player won!")
+        displayResult.textContent = `YOU WON! YOU chose ${playerSelection} and COMPUTER chose ${computerSelection}`
+        playerScore.textContent = `${++playerWin}`
+
     }
     else {
-        console.log("Computer won!")
+        displayResult.textContent = `YOU LOST! COMPUTER chose ${computerSelection} and YOU chose ${playerSelection}`
+        computerScore.textContent = `${++computerWin}`
+    }
+    setTimeout(()=>{checkWin()}, 3000);
+}
+function checkWin()
+{
+    if (playerWin >= 5) {
+        displayResult.textContent = "Congrats! Player wins!"
+        playerWin = 0;
+        computerWin = 0;
+        playerScore.textContent = `${playerWin}`
+        computerScore.textContent = `${computerWin}`
+
+
+
+    }
+    else if (computerWin >= 5) {
+        displayResult.textContent = "Oh no! Computer won!"
+        playerWin = 0;
+        computerWin = 0;
+        playerScore.textContent = `${playerWin}`
+        computerScore.textContent = `${computerWin}`
+
+
     }
 }
+function resetGame()
+{
+    console.log('reset')
+    playerWin = 0;
+    computerWin = 0;
+    playerScore.textContent = `${playerWin}`;
+    computerScore.textContent = `${computerWin}`;
+    displayResult.textContent = ''
 
-game();
+
+}
+
+const buttons = document.querySelectorAll('.buttons > button')
+const displayResult = document.querySelector('#output')
+displayResult.style.textAlign = 'center'
+buttons.forEach(button => button.addEventListener('click', game));
+
+const reset = document.querySelector('#reset');
+reset.addEventListener('click', resetGame )
+
+let playerWin = 0;
+let computerWin = 0;
+
+const playerScore = document.querySelector('#player_score')
+playerScore.textContent = `${playerWin}`;
+playerScore.style.textAlign = 'center'
+playerScore.style.fontSize = '38px'
+const computerScore = document.querySelector('#computer_score')
+computerScore.textContent = `${computerWin}`;
+computerScore.style.textAlign = 'center'
+computerScore.style.fontSize = '38px'
+
+

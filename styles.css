@@ -1,0 +1,109 @@
+:root{
+    --bg-color: rgb(248, 182, 182);
+    --hover-color: rgb(240, 193, 193); 
+}
+
+body{
+    margin: 0px;
+    height: 100%;
+}
+
+.main{
+    display: grid;
+    grid-template-areas: 'score container'
+    'score result';
+    grid-template-rows: 70% 30%;
+    grid-template-columns: 20% 80%;
+    height: 100vh;
+}
+
+.score{
+    grid-area: score;
+    background-color: var(--hover-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    border-radius:15px;
+    margin: 5px;
+}
+.score > p{
+    border: 2px solid white;
+    height: 40px;
+    width: 40px;
+    margin: 0;
+}
+#author{
+    margin-top:auto;
+}
+
+#reset{
+    align-self: flex-start;
+    justify-self:flex-start;
+}
+    
+.container{
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    grid-area: container;
+    border-radius:15px;
+    margin: 5px;
+   
+}
+#reset{
+    align-self: flex-end;
+    padding: 20px;
+    margin-right: 5%;
+    background-color: rgba(234, 182, 182, 0.762);
+    border-radius: 50px;
+    border-color: black;
+
+    
+}
+#reset:active{
+        box-shadow: 0 5px rgba(234, 182, 182, 0.762);
+        transform: translateY(2px);
+}
+#reset:hover{
+    background-color: #f9aaa9;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 5%;
+    padding: 2%
+}
+
+
+.buttons > button{
+    background-color: var(--bg-color);
+    border: none;
+    cursor:pointer;
+
+
+}
+
+.buttons > button:hover{
+    background-color: var(--hover-color);
+    border-radius:100%;
+}
+.buttons > button:active{
+    transform: scale(1.1);
+    background-color: transparent;
+}
+
+.fa-regular{
+    color: rgb(2, 12, 35);
+}
+
+#result{
+    grid-area: result;
+    border-radius:15px;
+    margin: 5px;
+    background-color: #f9aaa9;
+}
